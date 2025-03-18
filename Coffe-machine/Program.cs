@@ -25,6 +25,7 @@ Console.WriteLine("\t6. take cash");
 Console.WriteLine("\t7. Add drink");
 
 Drink item = new();
+Ingradient sorb = new();
 
 while (true)
 {
@@ -35,9 +36,9 @@ while (true)
     {
         case 1:
             Console.Write("Enter product Name: ");
-            item.Name = Console.ReadLine();
+            sorb.Name = Console.ReadLine();
             Console.Write("Enter product Weight: ");
-            item.Weight = Console.ReadLine();
+            sorb.Weight = Console.ReadLine();
             break;
         case 7:
             Console.Write("Enter product Name: ");
