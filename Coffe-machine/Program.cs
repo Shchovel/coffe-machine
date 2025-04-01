@@ -13,19 +13,24 @@
 Замовлення напою(+ оплата)
 */
 
+using System.Text.Json;
+
 Console.WriteLine("-----CoffeMachine-----");
 
 Console.WriteLine("\t Menu:");
 
 Console.WriteLine("- Admin");
 Console.WriteLine("\t1. Add ingredient");
+Console.WriteLine("\t2. Save to file");
+Console.WriteLine("\t3. Load from file");
+Console.WriteLine("\t4. Show all products");
 
 Console.WriteLine("\t5. show statistik");
 Console.WriteLine("\t6. take cash");
 Console.WriteLine("\t7. Add drink");
 
-Drink item = new();
-Ingradient sorb = new();
+List<Drink> items = new();
+List<Ingradient> sorbs = new();
 
 while (true)
 {
@@ -35,12 +40,27 @@ while (true)
     switch (choice)
     {
         case 1:
-            Console.Write("Enter product Name: ");
-            sorb.Name = Console.ReadLine();
-            Console.Write("Enter product Weight: ");
-            sorb.Weight = Console.ReadLine();
+            //var sorb = new Ingradient();
+
+            //Console.Write("Enter product Name: ");
+            //sorb.Name = Console.ReadLine();
+            //Console.Write("Enter product Weight: ");
+            //sorb.Weight = Console.ReadLine();
             break;
+
+        case 2:
+            string jsonToSave = JsonSerializer.Serialize(items);
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json", jsonToSave);
+            break;
+        case 3:
+            string jsonToLoad = File.ReadAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json");
+            items = JsonSerializer.Deserialize<List<Drink>>(jsonToLoad);
+            break;
+
         case 7:
+            var item = new Drink();
+
             Console.Write("Enter product Name: ");
             item.Name = Console.ReadLine();
             Console.Write("Enter product Size: ");
@@ -51,14 +71,19 @@ while (true)
             item.RadiationLevel = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter product Topings: ");
             item.Topings = Console.ReadLine();
+
+            items.Add(item);
             break;
         case 4:
-            Console.WriteLine("------- Drink ---------");
-            Console.WriteLine($"Name: {item.Name}");
-            Console.WriteLine($"Size: {item.Size}");
-            Console.WriteLine($"Price: {item.Price}");
-            Console.WriteLine($"RadiationLevel: {item.RadiationLevel}");
-            Console.WriteLine($"Topings: {item.Topings}");
+            foreach (var i in items)
+            {
+                Console.WriteLine("------- Drink ---------");
+                Console.WriteLine($"Name: {i.Name}");
+                Console.WriteLine($"Size: {i.Size}");
+                Console.WriteLine($"Price: {i.Price}");
+                Console.WriteLine($"RadiationLevel: {i.RadiationLevel}");
+                Console.WriteLine($"Topings: {i.Topings}");
+            }
             break;
     }
 }
