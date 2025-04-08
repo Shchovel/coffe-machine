@@ -28,6 +28,10 @@ Console.WriteLine("\t4. Show all products");
 Console.WriteLine("\t5. show statistik");
 Console.WriteLine("\t6. take cash");
 Console.WriteLine("\t7. Add drink");
+Console.WriteLine("\t8. Delete");
+Console.WriteLine("\t9. Find Drink by id");
+
+
 
 List<Drink> items = new();
 List<Ingradient> sorbs = new();
@@ -85,8 +89,44 @@ while (true)
                 Console.WriteLine($"Topings: {i.Topings}");
             }
             break;
+            break;
+        case 8:
+            for (int i = 0; i < items.Count; ++i)
+                Console.WriteLine($"[{i}] Drink: " + items[i].Name);
+
+            Console.Write("Enter number to delete: ");
+            int numToDelete = Convert.ToInt32(Console.ReadLine());
+
+            if (numToDelete < 0 || numToDelete >= items.Count)
+            {
+                Console.WriteLine("Number out of range!");
+                break;
+            }
+
+            items.RemoveAt(numToDelete);
+            Console.WriteLine("Drink deleted successfully!");
+            break;
+
+        case 9:
+            for (int i = 0; i < items.Count; ++i)
+                Console.WriteLine($"[{i}] Product: " + items[i].Name);
+
+            Console.Write("Enter number to show: ");
+            int numToShow = Convert.ToInt32(Console.ReadLine());
+
+            if (numToShow < 0 || numToShow >= items.Count)
+            {
+                Console.WriteLine("Number out of range!");
+                break;
+            }
+            var itemToShow = items[numToShow];
+
+            itemToShow.Show();
+            break;
     }
 }
+    
+
 
 Console.WriteLine("- User");
 Console.WriteLine("\t1. Order");
@@ -99,6 +139,17 @@ public class Drink
     public double Price { get; set; }
     public int RadiationLevel { get; set; }
     public string Topings { get; set; }
+    public void Show()
+    {
+        Console.WriteLine("------- Drink ---------");
+        Console.WriteLine($"Name: {this.Name}");
+        Console.WriteLine($"Size: {this.Size}");
+        Console.WriteLine($"Price: {this.Price}");
+        Console.WriteLine($"RadiationLevel: {this.RadiationLevel}");
+        Console.WriteLine($"Topings: {this.Topings}");
+    }
+
+
 }
 
 public class Ingradient
