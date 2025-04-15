@@ -130,31 +130,3 @@ while (true)
 
 Console.WriteLine("- User");
 Console.WriteLine("\t1. Order");
-
-
-public class Drink
-{
-    public string Name { get; set; }
-    public int Size { get; set; }
-    public double Price { get; set; }
-    public int RadiationLevel { get; set; }
-    public string Topings { get; set; }
-    public void Show()
-    {
-        Console.WriteLine("------- Drink ---------");
-        Console.WriteLine($"Name: {this.Name}");
-        Console.WriteLine($"Size: {this.Size}");
-        Console.WriteLine($"Price: {this.Price}");
-        Console.WriteLine($"RadiationLevel: {this.RadiationLevel}");
-        Console.WriteLine($"Topings: {this.Topings}");
-    }
-
-
-}
-
-public class Ingradient
-{
-    public string Name { get; set; }
-    public string Weight { get; set; }
-   
-}
