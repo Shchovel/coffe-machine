@@ -33,8 +33,6 @@ Console.WriteLine("\t9. Find Drink by id");
 
 
 
-List<Drink> items = new();
-List<Ingradient> sorbs = new();
 
 while (true)
 {
@@ -44,84 +42,28 @@ while (true)
     switch (choice)
     {
         case 1:
-            //var sorb = new Ingradient();
-
-            //Console.Write("Enter product Name: ");
-            //sorb.Name = Console.ReadLine();
-            //Console.Write("Enter product Weight: ");
-            //sorb.Weight = Console.ReadLine();
+            
             break;
 
         case 2:
-            string jsonToSave = JsonSerializer.Serialize(items);
-            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
-            File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json", jsonToSave);
+            
             break;
         case 3:
-            string jsonToLoad = File.ReadAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json");
-            items = JsonSerializer.Deserialize<List<Drink>>(jsonToLoad);
+            
             break;
 
         case 7:
-            var item = new Drink();
-
-            Console.Write("Enter product Name: ");
-            item.Name = Console.ReadLine();
-            Console.Write("Enter product Size: ");
-            item.Size = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter product Price: ");
-            item.Price = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter product RadiationLevel: ");
-            item.RadiationLevel = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter product Topings: ");
-            item.Topings = Console.ReadLine();
-
-            items.Add(item);
+            
             break;
         case 4:
-            foreach (var i in items)
-            {
-                Console.WriteLine("------- Drink ---------");
-                Console.WriteLine($"Name: {i.Name}");
-                Console.WriteLine($"Size: {i.Size}");
-                Console.WriteLine($"Price: {i.Price}");
-                Console.WriteLine($"RadiationLevel: {i.RadiationLevel}");
-                Console.WriteLine($"Topings: {i.Topings}");
-            }
-            break;
+            
             break;
         case 8:
-            for (int i = 0; i < items.Count; ++i)
-                Console.WriteLine($"[{i}] Drink: " + items[i].Name);
-
-            Console.Write("Enter number to delete: ");
-            int numToDelete = Convert.ToInt32(Console.ReadLine());
-
-            if (numToDelete < 0 || numToDelete >= items.Count)
-            {
-                Console.WriteLine("Number out of range!");
-                break;
-            }
-
-            items.RemoveAt(numToDelete);
-            Console.WriteLine("Drink deleted successfully!");
+            
             break;
 
         case 9:
-            for (int i = 0; i < items.Count; ++i)
-                Console.WriteLine($"[{i}] Product: " + items[i].Name);
-
-            Console.Write("Enter number to show: ");
-            int numToShow = Convert.ToInt32(Console.ReadLine());
-
-            if (numToShow < 0 || numToShow >= items.Count)
-            {
-                Console.WriteLine("Number out of range!");
-                break;
-            }
-            var itemToShow = items[numToShow];
-
-            itemToShow.Show();
+            
             break;
     }
 }
