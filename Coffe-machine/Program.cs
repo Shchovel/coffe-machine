@@ -13,6 +13,7 @@
 Замовлення напою(+ оплата)
 */
 
+using Coffe_machine;
 using System.Text.Json;
 
 Console.WriteLine("-----CoffeMachine-----");
@@ -31,6 +32,8 @@ Console.WriteLine("\t7. Add drink");
 Console.WriteLine("\t8. Delete");
 Console.WriteLine("\t9. Find Drink by id");
 
+Coffemachine coffemachine = new(); 
+
 
 
 
@@ -42,28 +45,28 @@ while (true)
     switch (choice)
     {
         case 1:
-            
+            coffemachine.AddIngradient();
             break;
 
         case 2:
-            
+            coffemachine.SaveToFile();
             break;
         case 3:
-            
+            coffemachine.LoadFromFile();
             break;
 
         case 7:
-            
+            coffemachine.AddDrink();
             break;
         case 4:
-            
+            coffemachine.ShowAllProducts();
             break;
         case 8:
-            
+            coffemachine.Delete();
             break;
 
         case 9:
-            
+            coffemachine.FindDrinkById();
             break;
     }
 }
